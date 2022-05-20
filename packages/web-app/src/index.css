@@ -1,0 +1,33 @@
+@font-face {
+  font-family: Circular;
+  font-weight: normal;
+  src: url("./font/CircularStd-Medium.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Circular;
+  font-weight: bold;
+  src: url("./font/CircularStd-Bold.otf") format("opentype");
+  font-display: swap;
+}
+
+body {
+  margin: 0;
+  font-family: Circular, 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+.body-container {
+  overflow-y: hidden;
+}
+
+@media (max-width: 1000px) {
+  .body-container {
+    overflow-y: scroll;
+  }
+}

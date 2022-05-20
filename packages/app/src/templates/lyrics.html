@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles/lyrics.css">
+  </head>
+  <body class="theme--light">
+    <div class="loader-container" id="loader">
+      <div class="kabobloader">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </div>
+
+    <div class="window" id="window" style="display: none">
+      <div class="window-bg" id="bg-artwork">
+        <div class="overlay"></div>
+      </div>
+
+      <div class="window-content">
+        <div class="window-header">
+          <h1 id="title"></h1>
+          <h2 id="artist"></h2>
+          <i class="material-icons" id="refresh">refresh</i>
+        </div>
+        <p class="window-lyrics" id="lyrics"></p>
+      </div>
+
+      <div class="controls">
+        <div class="mainopShadow"></div>
+        <div class="fab">
+          <div id="playControl" class="mainop">
+            <i class="material-icons" id="status_control">play_arrow</i>
+          </div>
+          <div id="previousControl" class="minifab">
+            <i class="material-icons minifabIcon">skip_previous</i>
+          </div>
+          <div id="nextControl" class="minifab">
+            <i class="material-icons minifabIcon">skip_next</i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      require('../scripts/lyrics');
+    </script>
+  </body>
+</html>

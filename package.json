@@ -1,0 +1,22 @@
+{
+  "name": "spotifyrics",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "index.js",
+  "workspaces": {
+    "packages": [
+      "packages/app",
+      "packages/web-app"
+    ]
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:app": "npm install --workspace=packages/app",
+    "dev:web": "npm start --workspace=packages/web-app",
+    "build:web": "npm run build --workspace=packages/web-app"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
