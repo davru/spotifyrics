@@ -22,11 +22,11 @@ jobs:
       run: npm run build:web
     
     - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      uses: wangyucode/sftp-upload-action@v1.3.2
       with:
-        server: ${{ secrets.DEPLOY_HOST }}
+        host: ${{ secrets.DEPLOY_HOST }}
         username: ${{ secrets.DEPLOY_USER }}
         password: ${{ secrets.DEPLOY_PASS }}
-        dangerous-clean-slate: true
-        local-dir: ${{ secrets.DEPLOY_DIR }}
-        port: 22
+        localDir: ${{ secrets.DEPLOY_DIR }}
+        remoteDir: '/'
+        forceUpload: true
