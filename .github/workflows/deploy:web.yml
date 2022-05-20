@@ -29,3 +29,4 @@ jobs:
         password: ${{ secrets.DEPLOY_PASS }}
         dangerous-clean-slate: true
         local-dir: ${{ secrets.DEPLOY_DIR }}
+        port: 22
