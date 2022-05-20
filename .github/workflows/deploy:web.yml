@@ -15,10 +15,11 @@ jobs:
       with:
         node-version: '17'
       
+    - name: 🔗 Install dependencies
+      run: npm install
+
     - name: 🔨 Build Project
-      run: |
-        npm install
-        npm run build:web
+      run: npm run build:web
     
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
