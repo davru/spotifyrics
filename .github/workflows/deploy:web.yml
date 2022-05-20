@@ -28,4 +28,4 @@ jobs:
         username: ${{ secrets.DEPLOY_USER }}
         password: ${{ secrets.DEPLOY_PASS }}
         dangerous-clean-slate: true
-        local-dir: ./packages/web-app/build
+        local-dir: ${{ secrets.DEPLOY_DIR }}
