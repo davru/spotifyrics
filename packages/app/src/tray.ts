@@ -1,25 +1,28 @@
-import { app, nativeImage, Tray, Menu, shell } from "electron";
+import { app, nativeImage, Tray, Menu, shell, nativeTheme } from "electron";
 import { next, playPause, previous } from "./utils/spotify";
 import { AppOptions } from "./utils/interfaces";
 import { cleanLyricsWindow, getTray, showLyrics } from "./main";
-import { nativeTheme } from "electron"
-import * as path from "path";
+import { join } from "path";
 import { AppTheme } from "./utils/enums";
-
-const storage = require('electron-json-storage');
-const assetsDir = path.join(__dirname, 'static');
+import { setSync } from 'electron-settings';
+const assetsDir = join(__dirname, 'static');
 
 // Refresh icon when MacOS dark/light theme has changed
 // nativeTheme.on("updated", (isDark: boolean) => setTray(constructTray(getAppOptions(), isDark)));
 
-export const setTrayImage = (imagePath: string): void => {
-  const image = nativeImage.createFromPath(imagePath);
+const setTrayImage = (options: AppOptions): void => {
+  const image = nativeImage.createFromPath(getTrayIcon(options));
   getTray().setImage(image.resize({ width: 16, height: 16 }));
+  getTray().popUpContextMenu();
+};
+
+const getTrayIcon = (options: AppOptions, isDark = nativeTheme.shouldUseDarkColors): string => {
+  return `${assetsDir}/IconTemplate_${options.coloredIcon ? 'c' : (isDark ? 'w' : 'd')}.png`;
 };
 
 export const constructTray = (options: AppOptions, isDark = nativeTheme.shouldUseDarkColors): Tray => {
   // Setup the menubar with an icon
-  const image = nativeImage.createFromPath(`${assetsDir}/IconTemplate_${options.coloredIcon ? 'c' : 'd'}.png`);
+  const image = nativeImage.createFromPath(getTrayIcon(options));
   const tray = new Tray(image.resize({ width: 16, height: 16 }));
 
   updateTrayMenu(tray, options);
@@ -27,7 +30,7 @@ export const constructTray = (options: AppOptions, isDark = nativeTheme.shouldUs
   return tray;
 };
 
-export const updateTrayMenu = (tray: Tray, options: AppOptions): void =>  {
+export const updateTrayMenu = (tray: Tray, options: AppOptions, open = false): void =>  {
   // Set tray context menu
   const contextMenu = Menu.buildFromTemplate([
     {
@@ -62,7 +65,7 @@ export const updateTrayMenu = (tray: Tray, options: AppOptions): void =>  {
           checked: options.openInBrowser,
           click: (e) => {
             options.openInBrowser = !options.openInBrowser;
-            storage.set('options.openInBrowser', options.openInBrowser);
+            setSync('openInBrowser', options.openInBrowser);
             cleanLyricsWindow();
           }
         },
@@ -72,7 +75,7 @@ export const updateTrayMenu = (tray: Tray, options: AppOptions): void =>  {
           checked: options.alwaysInTop,
           click: (e) => {
             options.alwaysInTop = !options.alwaysInTop;
-            storage.set('options.alwaysInTop', options.alwaysInTop);
+            setSync('alwaysInTop', options.alwaysInTop);
             cleanLyricsWindow();
             showLyrics();
           }
@@ -83,9 +86,8 @@ export const updateTrayMenu = (tray: Tray, options: AppOptions): void =>  {
           checked: options.coloredIcon,
           click: (e) => {
             options.coloredIcon = !options.coloredIcon;
-            storage.set('options.coloredIcon', options.coloredIcon);
-
-            setTrayImage(`${assetsDir}/IconTemplate_${options.coloredIcon ? 'c' : 'd'}.png`);
+            setSync('coloredIcon', options.coloredIcon);
+            setTrayImage(options);
           }
         },
         {
@@ -97,7 +99,7 @@ export const updateTrayMenu = (tray: Tray, options: AppOptions): void =>  {
               checked: options.theme === 'dark',
               click: (e) => {
                 options.theme = AppTheme.dark;
-                storage.set('options.theme', options.theme);
+                setSync('theme', options.theme);
                 cleanLyricsWindow();
                 showLyrics();
               }
@@ -108,7 +110,7 @@ export const updateTrayMenu = (tray: Tray, options: AppOptions): void =>  {
               checked: options.theme === 'light',
               click: (e) => {
                 options.theme = AppTheme.light;
-                storage.set('options.theme', options.theme);
+                setSync('theme', options.theme);
                 cleanLyricsWindow();
                 showLyrics();
               }
@@ -133,4 +135,7 @@ export const updateTrayMenu = (tray: Tray, options: AppOptions): void =>  {
   ]);
 
   tray.setContextMenu(contextMenu);
+  if (open) {
+    // tray.popUpContextMenu();
+  }
 }

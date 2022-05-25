@@ -7,24 +7,22 @@ import {
 import { getIsRunning, getTrackInfo } from './utils/spotify';
 import { getLyrics, getTrack } from './utils/genius';
 import { constructTray, updateTrayMenu } from "./tray";
-import * as path from "path";
 import { loadIpcProcesses } from "./ipc";
 import { AppOptions, SongInfo } from "./utils/interfaces";
 import { AppTheme } from "./utils/enums";
-
-const storage = require('electron-json-storage');
+import { getSync } from 'electron-settings';
 
 let tray: Tray;
 let lyricsWindow: BrowserWindow;
 let currentSong: SongInfo;
 const options: AppOptions = {
-  alwaysInTop: (typeof storage.getSync('options.alwaysInTop') === 'boolean')
-    ? storage.getSync('options.alwaysInTop') : false,
-  openInBrowser: (typeof storage.getSync('options.openInBrowser') === 'boolean')
-    ? storage.getSync('options.openInBrowser') : false,
-  coloredIcon: (typeof storage.getSync('options.coloredIcon') === 'boolean')
-    ? storage.getSync('options.coloredIcon') : false,
-  theme: (typeof storage.getSync('options.theme') === 'string') ? storage.getSync('options.theme') : AppTheme.dark
+  alwaysInTop: (typeof getSync('alwaysInTop') === 'boolean')
+    ? getSync('alwaysInTop') as boolean : false,
+  openInBrowser: (typeof getSync('openInBrowser') === 'boolean')
+    ? getSync('openInBrowser') as boolean : false,
+  coloredIcon: (typeof getSync('coloredIcon') === 'boolean')
+    ? getSync('coloredIcon') as boolean : false,
+  theme: (typeof getSync('theme') === 'string') ? getSync('theme') as AppTheme : AppTheme.dark
 };
 
 export const getTray = (): Tray => tray;
@@ -120,7 +118,7 @@ export const showLyrics = async () => {
     if (!!track) {
       currentSong = track;
       if (process.env.NODE_ENV === 'development') {
-        // lyricsWindow.webContents.openDevTools();
+        lyricsWindow.webContents.openDevTools();
       }
     }
   }).catch((error) => error);
