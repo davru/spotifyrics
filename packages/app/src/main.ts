@@ -8,6 +8,8 @@ import { AppOptions, SongInfo } from './utils/interfaces';
 import { getIsRunning, getTrackInfo } from './utils/spotify';
 import path = require('path');
 
+require('dotenv').config();
+
 let tray: Tray;
 let lyricsWindow: BrowserWindow;
 let currentSong: SongInfo;
