@@ -19,7 +19,9 @@ const Navbar = () => {
 					<a href="mailto:contact@davru.dev">Report issue</a>
 				</li>
 				<li>
-					<a href="https://davru.dev">The developer ;)</a>
+					<a href="https://davru.dev" target="_blank">
+						The developer ;)
+					</a>
 				</li>
 			</ul>
 		</>
