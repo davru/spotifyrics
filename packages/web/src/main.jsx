@@ -1,5 +1,11 @@
-import { render } from 'preact'
-import './index.css'
-import { App } from './app.jsx'
+import { AptabaseProvider } from '@aptabase/react';
+import { render } from 'preact';
+import { App } from './app.jsx';
+import './index.css';
 
-render(<App />, document.getElementById('app'))
+render(
+	<AptabaseProvider appKey={import.meta.env.VITE_APTABASE_KEY}>
+		<App />
+	</AptabaseProvider>,
+	document.getElementById('app'),
+);

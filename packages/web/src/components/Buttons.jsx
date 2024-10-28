@@ -7,7 +7,7 @@ const Buttons = ({ downloadClick }) => {
 				className="mac-download"
 				href="https://spotifyrics.davru.dev/downloads/Spotifyrics-1.0.1.dmg"
 				onClick={downloadClick}
-				download
+				download="Spotifyrics-1.0.1.dmg.zip"
 			>
 				<img src={mac_logo} alt="mac-logo" width="16px" height="16px" />
 				Mac download

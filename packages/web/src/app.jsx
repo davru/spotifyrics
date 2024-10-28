@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks';
+import { useEffect, useState } from 'preact/hooks';
 import demo_dark from './assets/demo_dark.gif';
 import demo_light from './assets/demo_light.gif';
 
@@ -9,13 +9,19 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 
 // Styles
+import { useAptabase } from '@aptabase/react';
 import './app.css';
 
 export function App() {
+	const { trackEvent } = useAptabase();
 	const [theme, setTheme] = useState(demo_dark);
 
 	const toggleTheme = () =>
 		setTheme(theme === demo_dark ? demo_light : demo_dark);
+
+	useEffect(() => {
+		trackEvent('visit')
+	}, [])
 
 	return (
 		<div className="App">
@@ -28,7 +34,7 @@ export function App() {
 					<div className="App-description-container">
 						<Description />
 						<div className="App-buttons">
-							<Buttons />
+							<Buttons downloadClick={() => trackEvent('download')} />
 						</div>
 					</div>
 				</div>
