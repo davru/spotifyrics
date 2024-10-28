@@ -1,87 +1,92 @@
 {
-  "name": "spotifyrics-app",
-  "productName": "Spotifyrics",
-  "version": "1.0.0",
-  "description": "A minimal Electron application written with Typescript",
-  "author": {
-    "name": "David (DSGDSR) Sánchez",
-    "email": "contact@dsgdsr.me",
-    "url": "http://dsgdsr.me"
-  },
-  "main": "./dist/main.js",
-  "scripts": {
-    "build": "webpack --mode production --config main.config.js",
-    "build:dev": "webpack --mode development --config main.config.js",
-    "watch": "tsc -w",
-    "lint": "tslint -c tslint.json -p tsconfig.json",
-    "start": "npm run build && electron ./dist/main.js",
-    "start:dev": "npm run build:dev && electron ./dist/main.js",
-    "dist:dev:mac": "npm run build && electron-builder --mac",
-    "dist:mac": "npm run build && electron-builder --mac"
-  },
-  "license": "CC0-1.0",
-  "devDependencies": {
-    "copy-webpack-plugin": "^9.0.0",
-    "electron": "^9.0.4",
-    "electron-builder": "^22.10.5",
-    "file-loader": "^6.2.0",
-    "html-webpack-plugin": "^5.3.1",
-    "mini-css-extract-plugin": "^1.6.0",
-    "postcss-loader": "^5.3.0",
-    "sass": "^1.34.1",
-    "sass-loader": "^12.0.0",
-    "ts-loader": "^9.2.3",
-    "tslint": "^6.1.2",
-    "typescript": "^3.9.5",
-    "webpack": "^5.38.1",
-    "webpack-cli": "^4.7.0"
-  },
-  "dependencies": {
-    "autoprefixer": "^10.2.6",
-    "cssnano": "^5.0.5",
-    "electron-json-storage": "^4.5.0",
-    "execa": "^4.0.3",
-    "genius-lyrics-api": "^3.0.6",
-    "postcss-cli": "^8.3.1",
-    "spotify-node-applescript": "^1.1.1"
-  },
-  "build": {
-    "appId": "me.dsgdsr.spotifyrics",
-    "productName": "Spotifyrics",
-    "files": [
-      "./dist/templates/*",
-      "./dist/**/*",
-      "./dist/main.js"
-    ],
-    "dmg": {
-      "contents": [
-        {
-          "x": 410,
-          "y": 150,
-          "type": "link",
-          "path": "/Applications"
-        },
-        {
-          "x": 130,
-          "y": 150,
-          "type": "file"
-        }
-      ]
-    },
-    "mac": {
-      "extendInfo": {
-        "LSUIElement": true
-      }
-    },
-    "win": {
-      "icon": "build/icons/icon.png"
-    },
-    "linux": {
-      "icon": "build/icons"
-    },
-    "directories": {
-      "buildResources": "resources",
-      "output": "build"
-    }
-  }
+	"name": "spotifyrics-app",
+	"productName": "Spotifyrics",
+	"version": "1.0.0",
+	"description": "A minimal Electron application written with Typescript",
+	"author": {
+		"name": "David (davru) Sánchez",
+		"email": "contact@davru.dev",
+		"url": "http://davru.dev"
+	},
+	"main": "./dist/main.js",
+	"scripts": {
+		"build": "webpack --mode production --config main.config.js",
+		"build:dev": "webpack --mode development --config main.config.js",
+		"watch": "tsc -w",
+		"lint": "tslint -c tslint.json -p tsconfig.json",
+		"start": "npm run build && electron ./dist/main.js",
+		"start:dev": "npm run build:dev && electron ./dist/main.js",
+		"dist:dev:mac": "npm run build && electron-builder --mac",
+		"dist:mac": "npm run build && electron-builder --mac"
+	},
+	"license": "CC0-1.0",
+	"devDependencies": {
+		"copy-webpack-plugin": "^9.0.0",
+		"electron": "^21.0.0",
+		"electron-builder": "^23.0.0",
+		"electron-settings": "4.0.4",
+		"file-loader": "^6.2.0",
+		"html-webpack-plugin": "^5.3.1",
+		"mini-css-extract-plugin": "^1.6.0",
+		"postcss-loader": "^5.3.0",
+		"sass": "^1.34.1",
+		"sass-loader": "^12.0.0",
+		"ts-loader": "^9.5.1",
+		"typescript": "^4.8.0",
+		"webpack": "^5.38.1",
+		"webpack-cli": "^4.7.0"
+	},
+	"dependencies": {
+		"@types/node": "^22.8.1",
+		"autoprefixer": "^10.2.6",
+		"execa": "^4.0.3",
+		"genius-lyrics-api": "^3.0.6",
+		"postcss-cli": "^8.3.1"
+	},
+	"build": {
+		"appId": "dev.davru.spotifyrics",
+		"productName": "Spotifyrics",
+		"files": [
+			"./dist/templates/*",
+			"./dist/**/*",
+			"./dist/main.js"
+		],
+		"dmg": {
+			"contents": [
+				{
+					"x": 410,
+					"y": 150,
+					"type": "link",
+					"path": "/Applications"
+				},
+				{
+					"x": 130,
+					"y": 150,
+					"type": "file"
+				}
+			]
+		},
+		"mac": {
+			"target": {
+				"target": "default",
+				"arch": [
+					"x64",
+					"arm64"
+				]
+			},
+			"extendInfo": {
+				"LSUIElement": true
+			}
+		},
+		"win": {
+			"icon": "build/icons/icon.png"
+		},
+		"linux": {
+			"icon": "build/icons"
+		},
+		"directories": {
+			"buildResources": "resources",
+			"output": "build"
+		}
+	}
 }
