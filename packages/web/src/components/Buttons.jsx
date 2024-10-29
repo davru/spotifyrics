@@ -1,17 +1,60 @@
+import { useEffect, useState } from 'preact/hooks';
 import mac_logo from '../assets/mac_logo.svg';
 
 const Buttons = ({ downloadClick }) => {
+	const [open, setOpen] = useState(false);
+
+	const togglePopover = ({ target }) => {
+		setOpen((currentOpen) => {
+			if (
+				!target.srcElement?.parentNode?.classList?.contains(
+					'download-popover',
+				) &&
+				currentOpen
+			) {
+				return false;
+			} else if (target?.classList?.contains('mac-download')) {
+				return !currentOpen;
+			}
+
+			return currentOpen;
+		});
+	};
+
+	useEffect(() => {
+		document.addEventListener('click', togglePopover);
+
+		return () => {
+			document.removeEventListener('click', togglePopover);
+		};
+	}, []);
+
 	return (
 		<>
-			<a
+			<button
 				className="mac-download"
 				href="https://spotifyrics.davru.dev/downloads/Spotifyrics-1.0.1.dmg"
-				onClick={downloadClick}
 				download="Spotifyrics-1.0.1.dmg.zip"
 			>
 				<img src={mac_logo} alt="mac-logo" width="16px" height="16px" />
 				Mac download
-			</a>
+				{open && (
+					<div className="download-popover">
+						<a
+							href="https://github.com/davru/spotifyrics/releases/download/1.0.1/Spotifyrics-1.0.1-arm64-mac.zip"
+							download="Spotifyrics-arm64-latest.dmg.zip"
+						>
+							arm64
+						</a>
+						<a
+							href="https://github.com/davru/spotifyrics/releases/download/1.0.1/Spotifyrics-1.0.1-mac.zip"
+							download="Spotifyrics-intel-latest.dmg.zip"
+						>
+							x86_64
+						</a>
+					</div>
+				)}
+			</button>
 			<a
 				className="paypal-donate"
 				target="_blank"

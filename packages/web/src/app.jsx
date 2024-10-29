@@ -20,8 +20,8 @@ export function App() {
 		setTheme(theme === demo_dark ? demo_light : demo_dark);
 
 	useEffect(() => {
-		trackEvent('visit')
-	}, [])
+		trackEvent('visit');
+	}, []);
 
 	return (
 		<div className="App">

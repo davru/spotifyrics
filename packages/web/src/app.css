@@ -170,10 +170,13 @@
 .App-buttons {
 	margin-top: 70px;
 	display: flex;
+	gap: 1.5rem;
 }
 
 .mac-download,
-.paypal-donate {
+.paypal-donate,
+.download-popover a {
+	position: relative;
 	background: #292640;
 	color: white;
 	border-radius: 5px;
@@ -190,12 +193,26 @@
 	text-decoration: none;
 }
 
-.mac-download {
-	margin-right: 35px;
+.download-popover {
+	display: flex;
+	gap: 0.25rem;
+	position: absolute;
+	top: 100%;
+	margin-top: 0.25rem;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.download-popover a {
+	color: white;
+	text-decoration: none;
+	padding: 0.8rem 1.2rem;
+	text-transform: none;
 }
 
 .mac-download:hover,
-.paypal-donate:hover {
+.paypal-donate:hover,
+.download-popover a:hover {
 	background: #151422;
 }
 
@@ -303,6 +320,10 @@ label.toggle-item {
 	.App-container {
 		flex-direction: column;
 		justify-content: flex-start;
+	}
+
+	.mac-download {
+		display: none;
 	}
 
 	.App-description {
