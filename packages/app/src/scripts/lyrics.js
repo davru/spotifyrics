@@ -1,6 +1,5 @@
 const { send, on } = window.electron;
 
-send('resize-window', 400, 600);
 send('update-theme');
 
 function toggleLoading(loading) {

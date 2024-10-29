@@ -1,7 +1,7 @@
 {
 	"name": "spotifyrics-app",
 	"productName": "Spotifyrics",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "A minimal Electron application written with Typescript",
 	"author": {
 		"name": "David (davru) Sánchez",
@@ -22,7 +22,7 @@
 	"license": "CC0-1.0",
 	"devDependencies": {
 		"copy-webpack-plugin": "^9.0.0",
-		"electron": "^21.0.0",
+		"electron": "^23.0.0",
 		"electron-builder": "^23.0.0",
 		"electron-settings": "4.0.4",
 		"file-loader": "^6.2.0",

@@ -1,20 +1,20 @@
-import { BrowserWindow, ipcMain, dialog } from "electron";
+import { BrowserWindow, dialog, ipcMain } from "electron";
 import {
-  cleanLyricsWindow,
-  getCurrentSong,
-  getOptions,
-  refreshSong,
-  updateCurrentSong
+    cleanLyricsWindow,
+    getCurrentSong,
+    getOptions,
+    refreshSong,
+    updateCurrentSong
 } from "./main";
 import { getTrack } from "./utils/genius";
 import { SongInfo } from "./utils/interfaces";
 import {
-  getIsRunning,
-  getName,
-  getPlayerState,
-  next,
-  playPause,
-  previous
+    getIsRunning,
+    getName,
+    getPlayerState,
+    next,
+    playPause,
+    previous
 } from "./utils/spotify";
 
 const refresh = async (event: any) => {
@@ -60,11 +60,6 @@ export const loadIpcProcesses = () => {
         refresh(event);
       }
     });
-  });
-
-  ipcMain.on('resize-window', (event, width, height) => {
-    const browserWindow = BrowserWindow.fromWebContents(event.sender);
-    browserWindow.setSize(width, height);
   });
 
   ipcMain.on('play-control', async (event) => {
