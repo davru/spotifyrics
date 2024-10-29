@@ -11,6 +11,7 @@ import Navbar from './components/Navbar';
 // Styles
 import { useAptabase } from '@aptabase/react';
 import './app.css';
+import { GithubCorner } from './components/GithubCorner';
 
 export function App() {
 	const { trackEvent } = useAptabase();
@@ -24,53 +25,56 @@ export function App() {
 	}, []);
 
 	return (
-		<div className="App">
-			<div className="App-bg"></div>
-			<header className="App-header">
-				<Navbar />
-			</header>
-			<div className="App-container">
-				<div className="App-description">
-					<div className="App-description-container">
-						<Description />
-						<div className="App-buttons">
-							<Buttons downloadClick={() => trackEvent('download')} />
-						</div>
-					</div>
-				</div>
-				<div className="App-demo">
-					<div className="demo-wrapper">
-						<div className="toggle-wrapper">
-							<span>Toggle app theme:</span>
-							<div className="toggle transparent">
-								<input
-									onChange={toggleTheme}
-									id="transparent"
-									type="checkbox"
-								/>
-								<label className="toggle-item" htmlFor="transparent"></label>
+		<>
+			<div className="App">
+				<div className="App-bg"></div>
+				<header className="App-header">
+					<Navbar />
+				</header>
+				<div className="App-container">
+					<div className="App-description">
+						<div className="App-description-container">
+							<Description />
+							<div className="App-buttons">
+								<Buttons downloadClick={() => trackEvent('download')} />
 							</div>
 						</div>
-
-						<img
-							src={demo_light}
-							key={demo_light}
-							height="0px"
-							width="0px"
-							alt="logo"
-							style={{ overflow: 'hidden', position: 'absolute' }}
-						/>
-						<img
-							src={theme}
-							key={theme}
-							height="calc(100% - 80px)"
-							width="inherit"
-							alt="logo"
-						/>
 					</div>
+					<div className="App-demo">
+						<div className="demo-wrapper">
+							<div className="toggle-wrapper">
+								<span>Toggle app theme:</span>
+								<div className="toggle transparent">
+									<input
+										onChange={toggleTheme}
+										id="transparent"
+										type="checkbox"
+									/>
+									<label className="toggle-item" htmlFor="transparent"></label>
+								</div>
+							</div>
+
+							<img
+								src={demo_light}
+								key={demo_light}
+								height="0px"
+								width="0px"
+								alt="logo"
+								style={{ overflow: 'hidden', position: 'absolute' }}
+							/>
+							<img
+								src={theme}
+								key={theme}
+								height="calc(100% - 80px)"
+								width="inherit"
+								alt="logo"
+							/>
+						</div>
+					</div>
+					<Footer />
 				</div>
-				<Footer />
 			</div>
-		</div>
+			<GithubCorner />
+		</>
 	);
 }
