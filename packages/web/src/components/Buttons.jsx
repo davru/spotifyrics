@@ -41,14 +41,14 @@ const Buttons = ({ downloadClick }) => {
 				{open && (
 					<div className="download-popover">
 						<a
-							href="https://github.com/davru/spotifyrics/releases/download/1.0.1/Spotifyrics-1.0.1-arm64-mac.zip"
-							download="Spotifyrics-arm64-latest.dmg.zip"
+							href="https://github.com/davru/spotifyrics/releases/download/1.0.1/Spotifyrics-1.0.1-arm64.dmg"
+							download="Spotifyrics-arm64-latest.dmg"
 						>
 							arm64
 						</a>
 						<a
-							href="https://github.com/davru/spotifyrics/releases/download/1.0.1/Spotifyrics-1.0.1-mac.zip"
-							download="Spotifyrics-intel-latest.dmg.zip"
+							href="https://github.com/davru/spotifyrics/releases/download/1.0.1/Spotifyrics-1.0.1.dmg"
+							download="Spotifyrics-intel-latest.dmg"
 						>
 							x86_64
 						</a>
